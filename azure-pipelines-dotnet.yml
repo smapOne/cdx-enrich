@@ -13,11 +13,7 @@ pr:
     - main
 
 pool:
-  name: Default
-  demands:
-  - Dotnet
-  - IsReadyForUse
-  - IntegrationBuild
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
