@@ -1,0 +1,66 @@
+# Azure DevOps Release Pipeline for .NET project
+# This pipeline builds and publishes to internal NuGet feed
+# Manual trigger only (equivalent to workflow_dispatch)
+
+trigger: none  # No automatic triggers - manual only
+
+pr: none  # No PR triggers
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  dotnetVersion: '8.0.x'
+  workingDirectory: '$(System.DefaultWorkingDirectory)/src'
+
+jobs:
+- job: Release
+  displayName: 'Build and Release'
+  timeoutInMinutes: 15
+  
+  steps:
+  - checkout: self
+    displayName: 'Checkout source code'
+  
+  - task: UseDotNet@2
+    displayName: 'Setup .NET $(dotnetVersion)'
+    inputs:
+      packageType: 'sdk'
+      version: '$(dotnetVersion)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore dependencies'
+    inputs:
+      command: 'restore'
+      projects: '**/*.csproj'
+      workingDirectory: '$(workingDirectory)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--no-restore --configuration $(buildConfiguration) -p:PackageId=SmapOne.CdxEnrich'
+      workingDirectory: '$(workingDirectory)'
+  
+  - task: PowerShell@2
+    displayName: 'Extract Version from .csproj'
+    inputs:
+      targetType: 'inline'
+      script: |
+        $csprojPath = "$(workingDirectory)/CdxEnrich/CdxEnrich.csproj"
+        [xml]$csproj = Get-Content $csprojPath
+        $version = $csproj.Project.PropertyGroup.Version
+        Write-Host "Extracted version: $version"
+        Write-Host "##vso[task.setvariable variable=VERSION]$version"
+      workingDirectory: '$(System.DefaultWorkingDirectory)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Push NuGet packages'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(workingDirectory)/CdxEnrich/nupkg/*.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '5335a7b3-9dc3-40f7-9286-e9138581c7c4'
+    condition: and(succeeded(), ne(variables['VERSION'], ''))
