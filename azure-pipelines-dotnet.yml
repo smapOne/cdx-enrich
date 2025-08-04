@@ -1,0 +1,62 @@
+# Azure DevOps Pipeline for .NET project
+# This pipeline builds and tests a .NET project
+# Triggers on main branch changes and pull requests
+
+trigger:
+  branches:
+    include:
+    - main
+
+pr:
+  branches:
+    include:
+    - main
+
+pool:
+  name: Default
+  demands:
+  - Dotnet
+  - IsReadyForUse
+  - IntegrationBuild
+
+variables:
+  buildConfiguration: 'Release'
+  dotnetVersion: '8.0.x'
+
+jobs:
+- job: Build
+  displayName: 'Build and Test'
+  
+  steps:
+  - checkout: self
+    displayName: 'Checkout source code'
+  
+  - task: UseDotNet@2
+    displayName: 'Setup .NET $(dotnetVersion)'
+    inputs:
+      packageType: 'sdk'
+      version: '$(dotnetVersion)'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore dependencies'
+    inputs:
+      command: 'restore'
+      projects: '**/*.csproj'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/src'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Build'
+    inputs:
+      command: 'build'
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --no-restore'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/src'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Test'
+    inputs:
+      command: 'test'
+      projects: '**/*.csproj'
+      arguments: '--configuration $(buildConfiguration) --no-restore --no-build --verbosity normal'
+      workingDirectory: '$(System.DefaultWorkingDirectory)/src'
+      publishTestResults: true
