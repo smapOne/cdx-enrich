@@ -1,6 +1,5 @@
 # Azure DevOps Release Pipeline for .NET project
 # This pipeline builds and publishes to internal NuGet feed
-# Manual trigger only (equivalent to workflow_dispatch)
 
 trigger: none  # No automatic triggers - manual only
 
@@ -41,7 +40,7 @@ jobs:
     inputs:
       command: 'build'
       projects: '**/*.csproj'
-      arguments: '--no-restore --configuration $(buildConfiguration) -p:PackageId=SmapOne.CdxEnrich'
+      arguments: '--no-restore --configuration $(buildConfiguration) -p:PackageId=smapOne.CdxEnrich'
       workingDirectory: '$(workingDirectory)'
   
   - task: PowerShell@2
