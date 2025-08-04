@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<Version>1.0.1-alpha</Version>
+		<Version>1.0.2-alpha</Version>
 
 		<AssemblyName>cdx-enrich</AssemblyName>
 		<OutputType>Exe</OutputType>
@@ -16,12 +16,12 @@
 	<PropertyGroup>
 		<PackageId>cdx-enrich</PackageId>
 		<PackageVersion>$(Version)</PackageVersion>
-		<Authors>Michael Tsfoni</Authors>
-		<Description>A .NET tool to enrich a CycloneDX Bill-of-Materials (BOM) with predefined data.</Description>
+		<Authors>Michael Tsfoni, SmapOne</Authors>
+		<Description>A .NET tool to enrich a CycloneDX Bill-of-Materials (BOM) with predefined data. (SmapOne fork)</Description>
 		<Copyright>Michael Tsfoni</Copyright>
-		<PackageProjectUrl>https://github.com/mtsfoni/cdx-enrich</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/smapOne/cdx-enrich</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
-		<RepositoryUrl>https://github.com/mtsfoni/cdx-enrich</RepositoryUrl>
+		<RepositoryUrl>https://github.com/smapOne/cdx-enrich</RepositoryUrl>
 		<PackageTags>sbom;license;cyclonedx;enrich;cli;pipeline;spdx</PackageTags>
 		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>		
 	</PropertyGroup>
