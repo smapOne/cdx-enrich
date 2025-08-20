@@ -60,6 +60,28 @@ namespace CdxEnrich.Actions
                 .Bind(MustNotHaveMoreThanOnePropertySet)
                 .Bind(BomRefMustNotBeNullOrEmpty);
         }
+        
+        public override Result<InputTuple> CheckBomAndConfigCombination(InputTuple inputs)
+        {
+            var configEntries = inputs.Config.ReplaceLicenseByBomRef?
+                .Where(item => item.Ref != null)
+                .ToList();
+            
+            if(configEntries == null)
+            {
+                return new Ok<InputTuple>(inputs);
+            }
+
+            var refComponentDict = configEntries.ToDictionary(x => x.Ref!, x => GetComponentByBomRef(inputs.Bom, x.Ref!));
+            var refWithoutComponent = refComponentDict.Where(x => x.Value == null).Select(x => x.Key).ToList();
+            if (refWithoutComponent.Count != 0)
+            {
+                return InvalidBomAndConfigCombinationError.Create<InputTuple>(
+                    $"One or multiple components not found in the BOM: '{string.Join("','", refWithoutComponent)}'");
+            }
+            
+            return new Ok<InputTuple>(inputs);
+        }
 
         public override InputTuple Execute(InputTuple inputs)
         {

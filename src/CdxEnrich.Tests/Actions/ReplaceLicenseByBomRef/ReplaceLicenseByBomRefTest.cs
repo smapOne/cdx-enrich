@@ -29,19 +29,6 @@ namespace CdxEnrich.Tests.Actions.ReplaceLicenseByBomRef
 
         }
 
-
-        [Test]
-        [TestCaseSource(nameof(GetConfigs), new object[] { "invalid" })]
-        public void InvalidConfigsReturnError(string configPath)
-        {
-            var configContent = File.ReadAllText(configPath);
-            var replaceAction = new CdxEnrich.Actions.ReplaceLicenseByBomRef();
-            var checkConfigResult = ConfigLoader.ParseConfig(configContent)
-                .Bind(replaceAction.CheckConfig);
-
-            Assert.That(checkConfigResult is Failure);
-        }
-
         [Test]
         [TestCaseSource(nameof(GetConfigs), new object[] { "valid" })]
         public void ValidConfigsReturnSuccess(string configPath)
@@ -51,14 +38,15 @@ namespace CdxEnrich.Tests.Actions.ReplaceLicenseByBomRef
             var checkConfigResult = ConfigLoader.ParseConfig(configContent)
                 .Bind(replaceAction.CheckConfig);
 
+            
             Assert.That(checkConfigResult is Success);
         }
 
-        private static IEnumerable<object[]> GetInputPairs()
+        private static IEnumerable<object[]> GetInputPairs(string startingWith)
         {
             bool returnedAtLeastOneSet = false;
 
-            foreach (string filePath in GetConfigs("valid"))
+            foreach (string filePath in GetConfigs(startingWith))
             {
                 string fileName = Path.GetFileNameWithoutExtension(filePath);
                 string testFilesPath = Path.GetFullPath(Path.Combine(Environment.CurrentDirectory, "../../..", "Actions/ReplaceLicenseByBomRef/testcases/boms"));
@@ -77,19 +65,19 @@ namespace CdxEnrich.Tests.Actions.ReplaceLicenseByBomRef
         }
 
         [Test]
-        [TestCaseSource(nameof(GetInputPairs))]
+        [TestCaseSource(nameof(GetInputPairs), new object[] { "valid" })]
         public Task ExecuteActionCreateCorrectResults(string configPath, string bomPath)
         {
-            var extension = Path.GetExtension(bomPath);
-            CycloneDXFormat inputFormat = extension.Equals(".json", StringComparison.CurrentCultureIgnoreCase) ? CycloneDXFormat.JSON : CycloneDXFormat.XML;
+            var inputFormat = GetCycloneDxFormat(bomPath);
             string bomContent = File.ReadAllText(bomPath);
             var replaceAction = new CdxEnrich.Actions.ReplaceLicenseByBomRef();
-
+            
             var executionResult =
                 Runner.CombineBomAndConfig(BomSerialization.DeserializeBom(bomContent, inputFormat),
-                    ConfigLoader.ParseConfig(File.ReadAllText(configPath))
-                        .Bind(replaceAction.CheckConfig))
-                    .Map(replaceAction.Execute);
+                        ConfigLoader.ParseConfig(File.ReadAllText(configPath))
+                            .Bind(replaceAction.CheckConfig))
+                    .Bind(replaceAction.CheckBomAndConfigCombination)
+                .Map(replaceAction.Execute);
 
             Assert.That(executionResult is Success);
 
@@ -100,6 +88,29 @@ namespace CdxEnrich.Tests.Actions.ReplaceLicenseByBomRef
             settings.AddExtraSettings(
                 _ => _.ContractResolver = new VerifyContractResolver());
             return Verify(executionResult.Data.Bom, settings);
+        }
+        
+        [Test]
+        [TestCaseSource(nameof(GetInputPairs), new object[] { "invalid" })]
+        public void InvalidBomAndConfigCombinationsReturnError(string configPath, string bomPath)
+        {
+            var inputFormat = GetCycloneDxFormat(bomPath);
+            string bomContent = File.ReadAllText(bomPath);
+            var replaceAction = new CdxEnrich.Actions.ReplaceLicenseByBomRef();
+
+            var checkConfigResult =
+                Runner.CombineBomAndConfig(BomSerialization.DeserializeBom(bomContent, inputFormat),
+                        ConfigLoader.ParseConfig(File.ReadAllText(configPath))
+                            .Bind(replaceAction.CheckConfig))
+                    .Bind(replaceAction.CheckBomAndConfigCombination);
+
+            Assert.That(checkConfigResult is Failure);
+        }
+        
+        private CycloneDXFormat GetCycloneDxFormat(string bomPath)
+        {
+            var extension = Path.GetExtension(bomPath);
+            return extension.Equals(".json", StringComparison.CurrentCultureIgnoreCase) ? CycloneDXFormat.JSON : CycloneDXFormat.XML;
         }
     }
 }

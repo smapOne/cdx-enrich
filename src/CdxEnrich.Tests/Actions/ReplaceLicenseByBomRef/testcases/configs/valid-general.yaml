@@ -5,5 +5,3 @@
   Name: "Oracle Technology Network License Agreement"
 - Ref: "pkg:nuget/EntityFramework@6.2.0"
   Name: "MICROSOFT SOFTWARE LICENSE TERMS - MICROSOFT .NET LIBRARY"
-- Ref: "pkg:nuget/github@1.0.0"
-  Name: "Package that doesn't exist in the BOM"
