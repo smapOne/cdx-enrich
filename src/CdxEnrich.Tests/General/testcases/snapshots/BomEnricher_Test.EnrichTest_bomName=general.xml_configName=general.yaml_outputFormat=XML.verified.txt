@@ -1,290 +1,97 @@
 ﻿{
   Data:
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<bom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" serialNumber="urn:uuid:574fae65-6797-4a98-83a1-0d2c969b8d1d" version="1" xmlns="http://cyclonedx.org/schema/bom/1.5">
-  <metadata>
-    <timestamp>2024-06-04T13:51:48.1249363Z</timestamp>
-    <tools>
-      <tool>
-        <vendor>CycloneDX</vendor>
-        <name>CycloneDX module for .NET</name>
-        <version>3.0.4.0</version>
-      </tool>
-    </tools>
-    <component type="application" bom-ref="CdxEnrich@0.0.0">
-      <name>CdxEnrich</name>
-      <version>0.0.0</version>
-    </component>
-  </metadata>
+<bom xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" serialNumber="urn:uuid:69266ec5-519b-4ae5-92e1-df3a91f9a093" version="1" xmlns="http://cyclonedx.org/schema/bom/1.5">
   <components>
-    <component type="library" bom-ref="pkg:nuget/CycloneDX.Core@7.0.1">
-      <author>Patrick Dwyer &amp; Steve Springett</author>
-      <name>CycloneDX.Core</name>
-      <version>7.0.1</version>
-      <description>A .NET Standard library for CycloneDX bill-of-material documents.</description>
+    <component type="library" bom-ref="pkg:nuget/Apache.NMS@1.8.0">
+      <author>Apache ActiveMQ</author>
+      <name>Apache.NMS</name>
+      <version>1.8.0</version>
+      <description>Apache NMS (.Net Standard Messaging Library): An abstract interface to Message Oriented Middleware (MOM) providers</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">12C891FFC196C8449EC357122C37B2E154C5DB17EE4693323DD8575C904B157039C9B4749526FA622E6716BE79AF2C0ABE5EF7B11E001644999678FFBEF96079</hash>
+        <hash alg="SHA-512">265532783F0B1D1577E249B6D931E23DA80F0D2580B87322A4BCBECAA6FB12F8E45D50A762AA4F336D9B33B2D23AA713CD698DEE4E1393067944C7A301B90BCC</hash>
       </hashes>
       <licenses>
         <license>
           <id>Apache-2.0</id>
         </license>
       </licenses>
-      <copyright>Copyright (c) OWASP Foundation</copyright>
-      <purl>pkg:nuget/CycloneDX.Core@7.0.1</purl>
+      <copyright>Copyright (C) 2005-2019 Apache Software Foundation</copyright>
+      <purl>pkg:nuget/Apache.NMS@1.8.0</purl>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/CycloneDX/cyclonedx-dotnet-library</url>
+          <url>https://activemq.apache.org/components/nms/</url>
         </reference>
         <reference type="vcs">
-          <url>https://github.com/CycloneDX/cyclonedx-dotnet-library.git</url>
+          <url>https://github.com/apache/activemq-nms-api</url>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:nuget/JetBrains.Annotations@2021.2.0">
-      <author>JetBrains</author>
-      <name>JetBrains.Annotations</name>
-      <version>2021.2.0</version>
-      <description>Annotations to increase accuracy of ReSharper code inspections</description>
+    <component type="library" bom-ref="pkg:nuget/Apache.NMS.ActiveMQ@1.8.0">
+      <author>Apache ActiveMQ</author>
+      <name>Apache.NMS.ActiveMQ</name>
+      <version>1.8.0</version>
+      <description>Apache NMS (.Net Standard Messaging Library): Openwire implementation of Apache NMS API</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">E4F1E8A7A6890B2116A2A5B4483346E1BDD0AC7B30D67B5C026B8596C5150A86868BB2D3EACA22D0E22E80DBCFEEEDAE755EC1C29258C8895ACFC3F9710517C5</hash>
+        <hash alg="SHA-512">FE127FBDD1A1CBB82DFDF4970314C4F1086DA73674B8B126BE8F33BC82D812B36DB7FD6D0E71210EB64852CF3BDDBD46A1D80E00582F02C364FC07C59A004109</hash>
       </hashes>
       <licenses>
         <license>
-          <id>MIT</id>
+          <name>Some License</name>
         </license>
       </licenses>
-      <purl>pkg:nuget/JetBrains.Annotations@2021.2.0</purl>
+      <copyright>Copyright (C) 2005-2019 Apache Software Foundation</copyright>
+      <purl>pkg:nuget/Apache.NMS.ActiveMQ@1.8.0</purl>
       <externalReferences>
         <reference type="website">
-          <url>https://www.jetbrains.com/help/resharper/Code_Analysis__Code_Annotations.html</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/Json.More.Net@1.9.0">
-      <author>Greg Dennis</author>
-      <name>Json.More.Net</name>
-      <version>1.9.0</version>
-      <description>Provides extended functionality for the System.Text.Json namespace.
-	
-		Read the full documentation at https://docs.json-everything.net/more/json-more/.</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">B1EB68F44425F6FA875B92FA59ABC1E6148F520558C86E9F090884019C8524EAC863A96F21D97A589BB613A173C888C58349301B642ACCE3B9A0065B3B42A7ED</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:nuget/Json.More.Net@1.9.0</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/gregsdennis/json-everything</url>
+          <url>https://activemq.apache.org/components/nms/</url>
         </reference>
         <reference type="vcs">
-          <url>https://github.com/gregsdennis/json-everything</url>
+          <url>https://github.com/apache/activemq-nms-openwire</url>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:nuget/JsonPointer.Net@3.0.3">
-      <author>Greg Dennis</author>
-      <name>JsonPointer.Net</name>
-      <version>3.0.3</version>
-      <description>[JSON Pointer](https://tools.ietf.org/html/rfc6901) built on the System.Text.Json namespace.
-	
-		Read the full documentation at https://docs.json-everything.net/pointer/basics/.</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">D3A88FEBAE2B165BEA48A15BD785D63DB062C5A6D19A5748B2BB882AABC515D9D2362695A75004FEF2419D45DCE887F99A68F9823E36FE57429259171A9857CC</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <name>Unknown - See URL</name>
-          <url>https://aka.ms/deprecateLicenseUrl</url>
-        </license>
-      </licenses>
-      <purl>pkg:nuget/JsonPointer.Net@3.0.3</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/gregsdennis/json-everything</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/gregsdennis/json-everything</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/JsonSchema.Net@5.3.1">
-      <author>Greg Dennis</author>
-      <name>JsonSchema.Net</name>
-      <version>5.3.1</version>
-      <description>JSON Schema built on the System.Text.Json namespace.</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">D95F0B0760055EBB3FEBD86767C8ABBD6719C89A13B4BA5F8E29D8C2E4505B9ADA7C9B939ED6DDFC8150DFA94ACAED03343B6A13857A938FE8162135BC4E16AC</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <purl>pkg:nuget/JsonSchema.Net@5.3.1</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/gregsdennis/json-everything</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/gregsdennis/json-everything</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/protobuf-net@3.2.26">
-      <author>Marc Gravell</author>
-      <name>protobuf-net</name>
-      <version>3.2.26</version>
-      <description>Provides simple access to fast and efficient "Protocol Buffers" serialization from .NET applications</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">D69971E1C6E8254A1EF3398CD9F3FE5C57F9026911C6129DD5B390244AA8A549DBED9015ADC5E24A9BA456C139F30B78142B9F636C7F0027F2172288BEF47A62</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>Apache-2.0</id>
-        </license>
-      </licenses>
-      <copyright>See https://github.com/protobuf-net/protobuf-net</copyright>
-      <purl>pkg:nuget/protobuf-net@3.2.26</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/protobuf-net/protobuf-net</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/protobuf-net/protobuf-net</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/protobuf-net.Core@3.2.26">
-      <author>Marc Gravell</author>
-      <name>protobuf-net.Core</name>
-      <version>3.2.26</version>
-      <description>Provides simple access to fast and efficient "Protocol Buffers" serialization from .NET applications</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">2247E93C92350AC38F352325B684D25B3D3CC1A8489EAC5075B55662A0F6964975D10BF5A26C66F3246A3C0B44125864FC5AE24FC93F83DE670C7ED9609FF8B5</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>Apache-2.0</id>
-        </license>
-      </licenses>
-      <copyright>See https://github.com/protobuf-net/protobuf-net</copyright>
-      <purl>pkg:nuget/protobuf-net.Core@3.2.26</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/protobuf-net/protobuf-net</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/protobuf-net/protobuf-net</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/SonarAnalyzer.CSharp@9.26.0.92422">
-      <author>SonarSource</author>
-      <name>SonarAnalyzer.CSharp</name>
-      <version>9.26.0.92422</version>
-      <description>Roslyn analyzers that spot Bugs, Vulnerabilities and Code Smells in your code. For an even better overall experience, you can use SonarLint for Visual Studio or Rider, which is a free extension that can be used standalone or with SonarQube and/or SonarCloud.</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">52AE8BF224DCC2FC295BCFD38B821B5C679C5B239755ACD5FDDC7E8B765AFC8839862E445666CC668D0B00306EC423F80FEE3DC47128D449A3E70E1FC32FB4ED</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>LGPL-3.0-only</id>
-        </license>
-      </licenses>
-      <copyright>Copyright © 2015-2024 SonarSource SA</copyright>
-      <purl>pkg:nuget/SonarAnalyzer.CSharp@9.26.0.92422</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://redirect.sonarsource.com/doc/sonar-visualstudio.html</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/SonarSource/sonar-dotnet</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/System.Collections.Immutable@7.0.0">
+    <component type="library" bom-ref="pkg:nuget/EntityFramework@6.2.0">
       <author>Microsoft</author>
-      <name>System.Collections.Immutable</name>
-      <version>7.0.0</version>
-      <description>This package provides collections that are thread safe and guaranteed to never change their contents, also known as immutable collections. Like strings, any methods that perform modifications will not change the existing instance but instead return a new instance. For efficiency reasons, the implementation uses a sharing mechanism to ensure that newly created instances share as much data as possible with the previous instance while ensuring that operations have a predictable time complexity.
-
-The System.Collections.Immutable library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</description>
+      <name>EntityFramework</name>
+      <version>6.2.0</version>
+      <description>Entity Framework is Microsoft's recommended data access technology for new applications.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">F084AFC9395D74B4F252C47B7D0E378E676D6B8B6033A68636B648B58805E3772DD22FF1DED05D3C8C8553D2E7685B29B753FE1CBB5A333F018ABE6422A3EBFA</hash>
+        <hash alg="SHA-512">F9A07F727100AFD2AA54C8E6670BBE173CB710E3E3088CCDB0F014CA7D7D59B076BB72C51DDD8E0775F9EA88408FB1017F6869A65F4CDBB9E5467910C4E86800</hash>
       </hashes>
       <licenses>
         <license>
-          <id>MIT</id>
+          <name>MICROSOFT SOFTWARE LICENSE TERMS - MICROSOFT .NET LIBRARY</name>
+          <url>http://go.microsoft.com/fwlink/?LinkID=262998</url>
         </license>
       </licenses>
-      <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-      <purl>pkg:nuget/System.Collections.Immutable@7.0.0</purl>
+      <purl>pkg:nuget/EntityFramework@6.2.0</purl>
       <externalReferences>
         <reference type="website">
-          <url>https://dot.net/</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/dotnet/runtime</url>
+          <url>http://go.microsoft.com/fwlink/?LinkID=263480</url>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:nuget/System.CommandLine@2.0.0-beta4.22272.1">
+    <component type="library" bom-ref="pkg:nuget/Microsoft.CSharp@4.7.0">
       <author>Microsoft</author>
-      <name>System.CommandLine</name>
-      <version>2.0.0-beta4.22272.1</version>
-      <description>This package includes a powerful command line parser and other tools for building command line applications, including:
-    
-    * Shell-agnostic support for command line completions
-    * Method invocation and an extensible middleware pipeline
-    * Constructor- and property-based model binding for complex types
-    * Test and debug support</description>
-      <scope>required</scope>
-      <hashes>
-        <hash alg="SHA-512">979A7E66BA29E17BC5BEC42E926ED15362E23AE403E498C955E09DFFC4D3BAA14777A06F95E25D591FC9757A0EAA18DEB9E4662A1CA1663FA300F509A4A0383C</hash>
-      </hashes>
-      <licenses>
-        <license>
-          <id>MIT</id>
-        </license>
-      </licenses>
-      <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-      <purl>pkg:nuget/System.CommandLine@2.0.0-beta4.22272.1</purl>
-      <externalReferences>
-        <reference type="website">
-          <url>https://github.com/dotnet/command-line-api</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/dotnet/command-line-api</url>
-        </reference>
-      </externalReferences>
-    </component>
-    <component type="library" bom-ref="pkg:nuget/System.Text.Encodings.Web@7.0.0">
-      <author>Microsoft</author>
-      <name>System.Text.Encodings.Web</name>
-      <version>7.0.0</version>
-      <description>Provides types for encoding and escaping strings for use in JavaScript, HyperText Markup Language (HTML), and uniform resource locators (URL).
+      <name>Microsoft.CSharp</name>
+      <version>4.7.0</version>
+      <description>Provides support for compilation and code generation, including dynamic, using the C# language.
 
 Commonly Used Types:
-System.Text.Encodings.Web.HtmlEncoder
-System.Text.Encodings.Web.UrlEncoder
-System.Text.Encodings.Web.JavaScriptEncoder</description>
+Microsoft.CSharp.RuntimeBinder.Binder
+Microsoft.CSharp.RuntimeBinder.RuntimeBinderException
+Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfo
+Microsoft.CSharp.RuntimeBinder.CSharpArgumentInfoFlags
+Microsoft.CSharp.RuntimeBinder.CSharpBinderFlags
+ 
+When using NuGet 3.x this package requires at least version 3.4.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">D164C15DF021A99D18ED0C39B6B7C0290B7F948D8F09BF07140B47BAE6403F1CB9A822C1504AABD7A6094367AD9FCF8CED1EA186B0662A51815EBBB37A3B0434</hash>
+        <hash alg="SHA-512">2C96988515F95714D4B83F5650F183DC6A564E0B3CF5255FA0E3EF48476DEBAB4BDE542F9F2F6C47F6620B7A71D6A515E4415E6D2E388B60817A29621D5690DF</hash>
       </hashes>
       <licenses>
         <license>
@@ -292,106 +99,124 @@ System.Text.Encodings.Web.JavaScriptEncoder</description>
         </license>
       </licenses>
       <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-      <purl>pkg:nuget/System.Text.Encodings.Web@7.0.0</purl>
+      <purl>pkg:nuget/Microsoft.CSharp@4.7.0</purl>
       <externalReferences>
         <reference type="website">
-          <url>https://dot.net/</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/dotnet/runtime</url>
+          <url>https://github.com/dotnet/corefx</url>
         </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:nuget/System.Text.Json@7.0.2">
+    <component type="library" bom-ref="pkg:nuget/Oracle.ManagedDataAccess@12.1.2400">
+      <author>Oracle</author>
+      <name>Oracle.ManagedDataAccess</name>
+      <version>12.1.2400</version>
+      <description>The official Oracle Data Provider for .NET, Managed Driver for Oracle Database.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-512">9E0D389FC34725D630D9D31B9E9D9B03703112A7DD7A6D98851A977896C675120C84E74802EBE19870692D19B4F32213E0AED457502642655F53AF8809C41535</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <name>Oracle Technology Network License Agreement</name>
+          <url>http://www.oracle.com/technetwork/licenses/distribution-license-152002.html</url>
+        </license>
+      </licenses>
+      <copyright>2015</copyright>
+      <purl>pkg:nuget/Oracle.ManagedDataAccess@12.1.2400</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.oracle.com/technetwork/topics/dotnet/whatsnew/index.html</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:nuget/Oracle.ManagedDataAccess.EntityFramework@12.1.2400">
+      <author>Oracle</author>
+      <name>Oracle.ManagedDataAccess.EntityFramework</name>
+      <version>12.1.2400</version>
+      <description>The ODP.NET, Managed Driver Entity Framework package for EF 6 applications.</description>
+      <scope>required</scope>
+      <hashes>
+        <hash alg="SHA-512">4FFBFB343F7EEEB65870EF5E9CE2088DFC84CA62A92BAD94FB21D6D4145FE71D0460D086846C0EDDBDEFA45BA212FA6600B89FB089B98F1A158F6660D2BBA046</hash>
+      </hashes>
+      <licenses>
+        <license>
+          <name>Oracle Technology Network License Agreement</name>
+          <url>http://www.oracle.com/technetwork/licenses/distribution-license-152002.html</url>
+        </license>
+      </licenses>
+      <copyright>2015</copyright>
+      <purl>pkg:nuget/Oracle.ManagedDataAccess.EntityFramework@12.1.2400</purl>
+      <externalReferences>
+        <reference type="website">
+          <url>http://www.oracle.com/technetwork/topics/dotnet/whatsnew/index.html</url>
+        </reference>
+      </externalReferences>
+    </component>
+    <component type="library" bom-ref="pkg:nuget/System.Buffers@4.5.1">
       <author>Microsoft</author>
-      <name>System.Text.Json</name>
-      <version>7.0.2</version>
-      <description>Provides high-performance and low-allocating types that serialize objects to JavaScript Object Notation (JSON) text and deserialize JSON text to objects, with UTF-8 support built-in. Also provides types to read and write JSON text encoded as UTF-8, and to create an in-memory document object model (DOM), that is read-only, for random access of the JSON elements within a structured view of the data.
+      <name>System.Buffers</name>
+      <version>4.5.1</version>
+      <description>Provides resource pooling of any type for performance-critical applications that allocate and deallocate objects frequently.
 
-The System.Text.Json library is built-in as part of the shared framework in .NET Runtime. The package can be installed when you need to use it in other target frameworks.</description>
+Commonly Used Types:
+System.Buffers.ArrayPool&lt;T&gt;
+ 
+7601f4f6225089ffb291dc7d58293c7bbf5c5d4f 
+When using NuGet 3.x this package requires at least version 3.4.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">20AB3A9E729CB3E019F624986B5489341ACA89700B31F86F1A7945485B073C715D60B804FC6EA27C628A30D6D46015D1D1EFA0B75FB8842F620D0A95F749C648</hash>
+        <hash alg="SHA-512">80DA6158E55B9BCF7E0B5E6379B9CF45A632914F037B53C5BF5609576E3CD7821F7861956B73D74470D2D0C2E56DD235A5EF4CA6FFE7E192B820DC2D023AAFF2</hash>
       </hashes>
       <licenses>
         <license>
           <id>MIT</id>
+          <url>https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</url>
         </license>
       </licenses>
       <copyright>© Microsoft Corporation. All rights reserved.</copyright>
-      <purl>pkg:nuget/System.Text.Json@7.0.2</purl>
+      <purl>pkg:nuget/System.Buffers@4.5.1</purl>
       <externalReferences>
         <reference type="website">
           <url>https://dot.net/</url>
         </reference>
-        <reference type="vcs">
-          <url>https://github.com/dotnet/runtime</url>
-        </reference>
       </externalReferences>
     </component>
-    <component type="library" bom-ref="pkg:nuget/YamlDotNet@15.1.4">
-      <author>Antoine Aubry</author>
-      <name>YamlDotNet</name>
-      <version>15.1.4</version>
-      <description>This package contains the YAML parser and serializer.</description>
+    <component type="library" bom-ref="pkg:nuget/System.Memory@4.5.4">
+      <author>Microsoft</author>
+      <name>System.Memory</name>
+      <version>4.5.4</version>
+      <description>Provides types for efficient representation and pooling of managed, stack, and native memory segments and sequences of such segments, along with primitives to parse and format UTF-8 encoded text stored in those memory segments.
+
+Commonly Used Types:
+System.Span
+System.ReadOnlySpan
+System.Memory
+System.ReadOnlyMemory
+System.Buffers.MemoryPool
+System.Buffers.ReadOnlySequence
+System.Buffers.Text.Utf8Parser
+System.Buffers.Text.Utf8Formatter
+ 
+7601f4f6225089ffb291dc7d58293c7bbf5c5d4f 
+When using NuGet 3.x this package requires at least version 3.4.</description>
       <scope>required</scope>
       <hashes>
-        <hash alg="SHA-512">6EFFD0BFBA1C573283CA3910BD6613FAF4244FE23049F931D4AAC6A0954BE47E3CFB7AADBDB8678B3528248B4549419DEC70586B4FF99128782F20F8D8029DBA</hash>
+        <hash alg="SHA-512">8ECE5491EB0FE332BC190F40CF76B3BEEE0C5F996325034861BE221FDB0FF02FD59E4F7020B3C4A1F29A457F76FF76C4C95D46D38555E4F48C7A3BF172D87966</hash>
       </hashes>
       <licenses>
         <license>
           <id>MIT</id>
+          <url>https://github.com/dotnet/corefx/blob/master/LICENSE.TXT</url>
         </license>
       </licenses>
-      <purl>pkg:nuget/YamlDotNet@15.1.4</purl>
+      <copyright>© Microsoft Corporation. All rights reserved.</copyright>
+      <purl>pkg:nuget/System.Memory@4.5.4</purl>
       <externalReferences>
         <reference type="website">
-          <url>https://github.com/aaubry/YamlDotNet/wiki</url>
-        </reference>
-        <reference type="vcs">
-          <url>https://github.com/aaubry/YamlDotNet.git</url>
+          <url>https://dot.net/</url>
         </reference>
       </externalReferences>
     </component>
   </components>
-  <dependencies>
-    <dependency ref="CdxEnrich@0.0.0">
-      <dependency ref="pkg:nuget/CycloneDX.Core@7.0.1" />
-      <dependency ref="pkg:nuget/SonarAnalyzer.CSharp@9.26.0.92422" />
-      <dependency ref="pkg:nuget/System.CommandLine@2.0.0-beta4.22272.1" />
-      <dependency ref="pkg:nuget/YamlDotNet@15.1.4" />
-    </dependency>
-    <dependency ref="pkg:nuget/CycloneDX.Core@7.0.1">
-      <dependency ref="pkg:nuget/JsonSchema.Net@5.3.1" />
-      <dependency ref="pkg:nuget/System.Text.Json@7.0.2" />
-      <dependency ref="pkg:nuget/protobuf-net@3.2.26" />
-    </dependency>
-    <dependency ref="pkg:nuget/JetBrains.Annotations@2021.2.0" />
-    <dependency ref="pkg:nuget/Json.More.Net@1.9.0">
-      <dependency ref="pkg:nuget/System.Text.Json@7.0.2" />
-    </dependency>
-    <dependency ref="pkg:nuget/JsonPointer.Net@3.0.3">
-      <dependency ref="pkg:nuget/Json.More.Net@1.9.0" />
-    </dependency>
-    <dependency ref="pkg:nuget/JsonSchema.Net@5.3.1">
-      <dependency ref="pkg:nuget/JetBrains.Annotations@2021.2.0" />
-      <dependency ref="pkg:nuget/Json.More.Net@1.9.0" />
-      <dependency ref="pkg:nuget/JsonPointer.Net@3.0.3" />
-    </dependency>
-    <dependency ref="pkg:nuget/protobuf-net.Core@3.2.26">
-      <dependency ref="pkg:nuget/System.Collections.Immutable@7.0.0" />
-    </dependency>
-    <dependency ref="pkg:nuget/protobuf-net@3.2.26">
-      <dependency ref="pkg:nuget/protobuf-net.Core@3.2.26" />
-    </dependency>
-    <dependency ref="pkg:nuget/SonarAnalyzer.CSharp@9.26.0.92422" />
-    <dependency ref="pkg:nuget/System.Collections.Immutable@7.0.0" />
-    <dependency ref="pkg:nuget/System.CommandLine@2.0.0-beta4.22272.1" />
-    <dependency ref="pkg:nuget/System.Text.Encodings.Web@7.0.0" />
-    <dependency ref="pkg:nuget/System.Text.Json@7.0.2">
-      <dependency ref="pkg:nuget/System.Text.Encodings.Web@7.0.0" />
-    </dependency>
-    <dependency ref="pkg:nuget/YamlDotNet@15.1.4" />
-  </dependencies>
 </bom>
 }
