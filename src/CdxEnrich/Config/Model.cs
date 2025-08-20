@@ -27,7 +27,6 @@ namespace CdxEnrich.Config
         public string? Ref { get; set; }
         public string? Id { get; set; }
         public string? Name { get; set; }
-        
         public string? Expression { get; set; }
     }
     
