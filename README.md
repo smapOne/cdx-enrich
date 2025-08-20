@@ -80,6 +80,10 @@ ReplaceLicensesByURL:
 ReplaceLicenseByBomRef:
 - Ref: "pkg:nuget/Json.More.Net@1.9.0"
   Id: "MIT"
+- Ref: "pkg:nuget/System.IO@4.3.0"
+  Name: "LicenseRef-Proprietary-Microsoft-dotnet-library-license-windows"
+- Ref: "pkg:nuget/Microsoft.NETCore.Targets@1.1.0"
+  Expression: "MIT OR LicenseRef-Proprietary-Microsoft-dotnet-library-license-windows"
 
 ReplaceLicenseByClearlyDefined:
   - Ref: "pkg:nuget/System.Buffers@4.4.0"
@@ -95,6 +99,7 @@ This action replaces licenses in components that match a specific URL. The repla
 - One of:
   - **Id:** The new SPDX License ID.
   - **Name:** The new license name.
+  - **Expression:** The new license expression, which can be a combination of multiple licenses.
 
 #### ReplaceLicenseByBomRef
 
