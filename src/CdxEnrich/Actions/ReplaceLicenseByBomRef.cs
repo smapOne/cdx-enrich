@@ -14,11 +14,14 @@ namespace CdxEnrich.Actions
                 bom.Components.Find(comp => comp.BomRef == bomRef);
         }
 
-        private static Result<ConfigRoot> MustNotHaveIdAndNameSet(ConfigRoot config)
+        private static Result<ConfigRoot> MustNotHaveMoreThanOnePropertySet(ConfigRoot config)
         {
-            if (config.ReplaceLicenseByBomRef?.Exists(rec => rec.Name != null && rec.Id != null) == true)
+            var hasInvalidEntries = config.ReplaceLicenseByBomRef?
+                .Exists(rec => new object?[] { rec.Id, rec.Name, rec.Expression }.Count(x => x != null) > 1) == true;
+
+            if (hasInvalidEntries)
             {
-                return InvalidConfigError.Create<ConfigRoot>(moduleName, "One entry must have either Id or Name. Not both.");
+                return InvalidConfigError.Create<ConfigRoot>(moduleName, "One entry must have either Id or Name or Expression. Not more than one.");
             }
             else
             {
@@ -26,11 +29,11 @@ namespace CdxEnrich.Actions
             }
         }
 
-        private static Result<ConfigRoot> MustHaveEitherIdOrName(ConfigRoot config)
+        private static Result<ConfigRoot> MustHaveEitherIdOrNameOrExpression(ConfigRoot config)
         {
-            if (config.ReplaceLicenseByBomRef?.Exists(rec => rec.Name == null && rec.Id == null) == true)
+            if (config.ReplaceLicenseByBomRef?.Exists(rec => rec.Name == null && rec.Id == null && rec.Expression == null) == true)
             {
-                return InvalidConfigError.Create<ConfigRoot>(moduleName, "One entry must have either Id or Name.");
+                return InvalidConfigError.Create<ConfigRoot>(moduleName, "One entry must have either Id, Name or Expression.");
             }
             else
             {
@@ -53,8 +56,8 @@ namespace CdxEnrich.Actions
         public override Result<ConfigRoot> CheckConfig(ConfigRoot config)
         {
             return
-                MustHaveEitherIdOrName(config)
-                .Bind(MustNotHaveIdAndNameSet)
+                MustHaveEitherIdOrNameOrExpression(config)
+                .Bind(MustNotHaveMoreThanOnePropertySet)
                 .Bind(BomRefMustNotBeNullOrEmpty);
         }
 
@@ -69,20 +72,33 @@ namespace CdxEnrich.Actions
                        if (comp != null)
                        {
                            comp.Licenses =
-                           [
-                               new LicenseChoice
-                               {
-                                   License = new License()
-                                   {
-                                       Name = rep.Name,
-                                       Id = rep.Id
-                                   }
-                               },
-                           ];
+                               [
+                                   CreateLicenseChoice(rep)
+                               ];
                        }
                    });
 
             return inputs;
+        }
+        
+        private LicenseChoice CreateLicenseChoice(ReplaceLicenseByBomRefConfig rep)
+        {
+            if (rep.Expression != null)
+            {
+                return new LicenseChoice
+                {
+                    Expression = rep.Expression,
+                };
+            }
+
+            return new LicenseChoice
+            {
+                License = new License
+                {
+                    Name = rep.Name,
+                    Id = rep.Id
+                }
+            };
         }
     }
 }

@@ -1,0 +1,4 @@
+﻿ReplaceLicenseByBomRef:
+- Ref: "pkg:nuget/EntityFramework@6.2.0"
+  Name: "MICROSOFT SOFTWARE LICENSE TERMS - MICROSOFT .NET LIBRARY"
+  Expression: "MIT OR Apache-2.0"

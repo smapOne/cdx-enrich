@@ -80,6 +80,10 @@ ReplaceLicensesByURL:
 ReplaceLicenseByBomRef:
 - Ref: "pkg:nuget/Json.More.Net@1.9.0"
   Id: "MIT"
+- Ref: "pkg:nuget/Dynamsoft.ImageProcessing.Android@2.4.310"
+  Name: "LicenseRef-Proprietary-Dynamsoft-DOTNET-TWAIN-License-Agreement-2018-07-04"
+- Ref: "pkg:nuget/Microsoft.VisualStudio.Azure.Containers.Tools.Targets@1.19.5"
+  Expression: "Apache-2.0 AND MIT"
 
 ReplaceLicenseByClearlyDefined:
 - Ref: "pkg:nuget/System.Buffers@4.4.0"
@@ -94,7 +98,8 @@ This action replaces licenses in components that match a specific URL. The repla
 - **URL:** The URL of the license to be replaced.
 - One of:
   - **Id:** The new SPDX License ID.
-  - **Name:** The new license name.
+  - **Name:** The new license name. Can be used to specify a custom license name that is not in the SPDX License List.
+  - **Expression:** The new license expression, which can be a combination of multiple licenses.
 
 #### ReplaceLicenseByBomRef
 
@@ -103,7 +108,7 @@ This action replaces licenses in a specific component identified by its BOM refe
 - **Ref:** The BOM reference of the component whose license is to be replaced.
 - One of:
   - **Id:** The new SPDX License ID.
-  - **Name:** The new license name.
+  - **Name:** The new license name. Can be used to specify a custom license name that is not in the SPDX License List.
 
 #### ReplaceLicenseByClearlyDefined
 
