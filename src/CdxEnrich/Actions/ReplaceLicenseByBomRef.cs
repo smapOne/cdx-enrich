@@ -14,24 +14,12 @@ namespace CdxEnrich.Actions
                 bom.Components.Find(comp => comp.BomRef == bomRef);
         }
 
-        private static Result<ConfigRoot> MustNotHaveIdAndNameSet(ConfigRoot config)
+        private static Result<ConfigRoot> MustNotHaveMoreThanOnePropertySet(ConfigRoot config)
         {
-            var entriesWithMultipleSetProperties = config.ReplaceLicenseByBomRef?.Select(rec =>
-                {
-                    var a = new List<string>();
-                    if (rec.Id != null)
-                        a.Add(rec.Id);
+            var hasInvalidEntries = config.ReplaceLicenseByBomRef?
+                .Exists(rec => new object?[] { rec.Id, rec.Name, rec.Expression }.Count(x => x != null) > 1) == true;
 
-                    if (rec.Name != null)
-                        a.Add(rec.Name);
-
-                    if (rec.Expression != null)
-                        a.Add(rec.Expression);
-                    return a;
-                }
-            ).Where(x => x.Count > 1);
-
-            if (entriesWithMultipleSetProperties != null && entriesWithMultipleSetProperties.Any())
+            if (hasInvalidEntries)
             {
                 return InvalidConfigError.Create<ConfigRoot>(moduleName, "One entry must have either Id or Name or Expression. Not more than one.");
             }
@@ -69,7 +57,7 @@ namespace CdxEnrich.Actions
         {
             return
                 MustHaveEitherIdOrNameOrExpression(config)
-                .Bind(MustNotHaveIdAndNameSet)
+                .Bind(MustNotHaveMoreThanOnePropertySet)
                 .Bind(BomRefMustNotBeNullOrEmpty);
         }
 
