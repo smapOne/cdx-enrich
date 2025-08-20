@@ -82,16 +82,17 @@ namespace CdxEnrich.Actions
                 return new Ok<InputTuple>(inputs);
             }
 
-            foreach (var configEntryRef in configEntries.Select(x => x.Ref))
+            var refComponentDict = configEntries.ToDictionary(x => x.Ref!, x => GetComponentByBomRef(inputs.Bom, x.Ref!));
+            var refWithoutComponent = refComponentDict.Where(x => x.Value == null).Select(x => x.Key).ToList();
+            if (refWithoutComponent.Count != 0)
             {
-                var component = GetComponentByBomRef(inputs.Bom, configEntryRef!);
-                if (component == null)
-                {
-                    return InvalidBomAndConfigCombinationError.Create<InputTuple>(
-                        $"Component with bom ref '{configEntryRef}' not found in the BOM.");
-                }
-
-                if (string.IsNullOrEmpty(component.Purl))
+                return InvalidBomAndConfigCombinationError.Create<InputTuple>(
+                    $"One or multiple components not found in the BOM: '{string.Join("','", refWithoutComponent)}'");
+            }
+            
+            foreach (var (configEntryRef, component) in refComponentDict)
+            {
+                if (string.IsNullOrEmpty(component!.Purl))
                 {
                     return InvalidBomAndConfigCombinationError.Create<InputTuple>($"Component with bom ref '{configEntryRef}' does not have a PURL set.");
                 }
