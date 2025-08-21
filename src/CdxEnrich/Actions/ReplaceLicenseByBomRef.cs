@@ -52,13 +52,30 @@ namespace CdxEnrich.Actions
                 return new Ok<ConfigRoot>(config);
             }
         }
+        
+        private static Result<ConfigRoot> RefMustBeUnique(ConfigRoot config)
+        {
+            var duplicateRefs = config.ReplaceLicenseByBomRef?.GroupBy(x => x.Ref)
+                .Where(g => g.Count() > 1)
+                .Select(g => g.Key)
+                .ToList();
+            
+            if (duplicateRefs?.Count > 0)
+            {
+                return InvalidConfigError.Create<ConfigRoot>(moduleName,
+                    "The Refs must be unique. Found duplicates: " + string.Join(", ", duplicateRefs));
+            }
+
+            return new Ok<ConfigRoot>(config);
+        }
 
         public override Result<ConfigRoot> CheckConfig(ConfigRoot config)
         {
             return
                 MustHaveEitherIdOrNameOrExpression(config)
                 .Bind(MustNotHaveMoreThanOnePropertySet)
-                .Bind(BomRefMustNotBeNullOrEmpty);
+                .Bind(BomRefMustNotBeNullOrEmpty)
+                .Bind(RefMustBeUnique);
         }
         
         public override Result<InputTuple> CheckBomAndConfigCombination(InputTuple inputs)

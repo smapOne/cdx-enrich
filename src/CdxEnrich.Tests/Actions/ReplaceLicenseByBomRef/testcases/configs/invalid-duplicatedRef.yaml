@@ -1,0 +1,5 @@
+﻿ReplaceLicenseByBomRef:
+  - Ref: "pkg:nuget/System.Buffers@4.5.1"
+    Id: "MIT"
+  - Ref: "pkg:nuget/System.Buffers@4.5.1"
+    Id: "Apache-2.0"
